@@ -2,13 +2,19 @@ export function generateId() {
   return crypto.randomUUID();
 }
 
-export function createNode({ name, birthYear, deathYear, gender }) {
+export function createNode({ name, birthDate, deathDate, marriageDate, gender, photoUrl, socialLinks, permanentAddress, currentAddress, education }) {
   return {
     id: generateId(),
     name,
-    birthYear: birthYear || null,
-    deathYear: deathYear || null,
+    birthDate: birthDate || null,
+    deathDate: deathDate || null,
+    marriageDate: marriageDate || null,
     gender: gender || "other",
+    photoUrl: photoUrl || null,
+    socialLinks: socialLinks || {},
+    permanentAddress: permanentAddress || null,
+    currentAddress: currentAddress || null,
+    education: education || [],
     children: [],
   };
 }

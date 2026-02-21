@@ -1,7 +1,10 @@
-export default function ConfirmDialog({ message, onConfirm, onCancel }) {
+export default function ConfirmDialog({ message, onConfirm, onCancel, isClosing }) {
   return (
-    <div className="modal-overlay" onClick={onCancel}>
-      <div className="modal confirm-dialog" onClick={(e) => e.stopPropagation()}>
+    <div className={`modal-overlay${isClosing ? " is-closing" : ""}`} onClick={onCancel}>
+      <div
+        className={`modal confirm-dialog${isClosing ? " is-closing" : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <p>{message}</p>
         <div className="modal-actions">
           <button className="btn btn-secondary" onClick={onCancel}>
