@@ -230,6 +230,60 @@ body {
   cursor: grabbing;
 }
 
+.tree-flow {
+  width: 100%;
+  height: 100%;
+}
+
+.tree-flow .react-flow__node-family {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: auto;
+  padding: 0;
+}
+
+.tree-flow .react-flow__edge-path {
+  stroke: rgba(80, 90, 105, 0.42);
+  stroke-width: 2;
+  transition: stroke 0.18s ease, stroke-width 0.18s ease;
+}
+
+.tree-flow .react-flow__arrowhead path {
+  fill: rgba(80, 90, 105, 0.42);
+  transition: fill 0.18s ease;
+}
+
+.tree-flow .react-flow__edge.default-edge .react-flow__edge-path {
+  stroke: rgba(80, 90, 105, 0.34);
+}
+
+.tree-flow .react-flow__edge.relationship-edge .react-flow__edge-path {
+  stroke: #2a7f9e;
+  stroke-width: 2.6;
+}
+
+.tree-flow .react-flow__edge.relationship-edge .react-flow__arrowhead path {
+  fill: #2a7f9e;
+}
+
+.flow-handle {
+  width: 2px;
+  height: 2px;
+  border: none;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flow-handle-top {
+  top: 0;
+}
+
+.flow-handle-bottom {
+  bottom: 0;
+}
+
 .tree-canvas {
   display: inline-flex;
   transform-origin: 0 0;
@@ -297,6 +351,7 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
+  transition: transform 0.08s linear;
 }
 
 .tree-connectors {
@@ -322,6 +377,7 @@ body {
   gap: 0;
   position: relative;
   padding-top: 32px;
+  overflow: visible;
 }
 
 .collapse-wrapper {
@@ -336,7 +392,7 @@ body {
   opacity: 0;
 }
 
-.collapse-wrapper > .tree-children {
+.collapse-wrapper--hidden > .tree-children {
   overflow: hidden;
 }
 
@@ -344,17 +400,22 @@ body {
 .tree-node {
   background: #fff;
   border-left: 4px solid var(--node-accent, #5dade2);
-  border-radius: 14px;
-  padding: 14px 16px 12px;
-  min-width: 180px;
-  max-width: 220px;
+  border-radius: 999px;
+  padding: 18px 22px 16px;
+  min-width: 210px;
+  max-width: 260px;
+  min-height: 128px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08), 0 14px 30px rgba(15, 23, 42, 0.12);
-  cursor: default;
+  cursor: grab;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   margin-bottom: 10px;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: auto;
 }
 
 .tree-node::before {
@@ -364,13 +425,19 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  border-radius: 14px 14px 0 0;
+  border-radius: 999px 999px 0 0;
   background: hsl(calc(220 - (var(--depth, 0) * 25deg)), 55%, 62%);
 }
 
 .tree-node:hover {
   box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12), 0 18px 36px rgba(15, 23, 42, 0.16);
   transform: translateY(-1px);
+}
+
+.tree-node.is-dragging {
+  cursor: grabbing;
+  transform: none;
+  transition: none;
 }
 
 .tree-node:focus-visible {

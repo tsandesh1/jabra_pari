@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import Toolbar from "./components/Toolbar";
 import TreeView from "./components/TreeView";
 import NodeForm from "./components/NodeForm";
@@ -16,10 +16,6 @@ import {
 
 function useAnimatedModal(value, setValue) {
   const [isClosing, setIsClosing] = useState(false);
-
-  useEffect(() => {
-    if (value) setIsClosing(false);
-  }, [value]);
 
   const close = useCallback(() => {
     if (!value || isClosing) return;
