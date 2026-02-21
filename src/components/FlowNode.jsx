@@ -39,7 +39,7 @@ export default function FlowNode({ data }) {
       className={`tree-node gender-${node.gender}${isHighlighted ? " highlighted" : ""}`}
       onClick={() => onTraverseNode(node.id, hasChildren)}
     >
-      <Handle id="top" type="target" position={Position.Top} className="flow-handle flow-handle-top" />
+      <Handle id="left" type="target" position={Position.Left} className="flow-handle flow-handle-left" />
 
       <div className="node-photo nodrag" onClick={(e) => e.stopPropagation()}>
         <img src={nodeImage} alt={node.name} />
@@ -119,7 +119,7 @@ export default function FlowNode({ data }) {
         </button>
       )}
 
-      <Handle id="bottom" type="source" position={Position.Bottom} className="flow-handle flow-handle-bottom" />
+      <Handle id="right" type="source" position={Position.Right} className="flow-handle flow-handle-right" />
     </div>
   );
 }

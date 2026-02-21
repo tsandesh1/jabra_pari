@@ -276,12 +276,12 @@ body {
   pointer-events: none;
 }
 
-.flow-handle-top {
-  top: 0;
+.flow-handle-left {
+  left: 0;
 }
 
-.flow-handle-bottom {
-  bottom: 0;
+.flow-handle-right {
+  right: 0;
 }
 
 .tree-canvas {
@@ -992,4 +992,118 @@ body {
   margin-top: 8px;
   font-size: 0.75rem;
   color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .toolbar-left {
+    width: 100%;
+  }
+
+  .toolbar h1 {
+    font-size: 1rem;
+  }
+
+  .toolbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .toolbar-right {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .tree-node {
+    min-width: 168px;
+    max-width: 188px;
+    min-height: 108px;
+    padding: 12px 14px 10px;
+    margin-bottom: 6px;
+  }
+
+  .node-photo {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 6px;
+  }
+
+  .node-name {
+    font-size: 0.84rem;
+  }
+
+  .node-years {
+    font-size: 0.72rem;
+    margin-bottom: 4px;
+  }
+
+  .node-btn {
+    height: 24px;
+    min-width: 24px;
+    font-size: 0.66rem;
+    padding: 0 6px;
+  }
+
+  .node-toggle {
+    margin-top: 5px;
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  .tree-mobile-controls {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+    z-index: 6;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 12px;
+    padding: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-ctrl-btn {
+    height: 30px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .mobile-ctrl-btn:disabled {
+    opacity: 0.4;
+  }
+
+  .tree-node:hover .node-actions {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tree-node .node-actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
 }
