@@ -1,0 +1,414 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+}
+
+/* App layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  background: #1a1a2e;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.toolbar h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.toolbar-left {
+  flex-shrink: 0;
+}
+
+.toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar-right {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Search */
+.search-bar {
+  position: relative;
+  width: 280px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 6px 30px 6px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #2a2a4a;
+  color: #fff;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #888;
+}
+
+.search-bar input:focus {
+  border-color: #6c63ff;
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary {
+  background: #6c63ff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #5a52e0;
+}
+
+.btn-secondary {
+  background: #3a3a5a;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #4a4a6a;
+}
+
+.btn-danger {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+/* Main area */
+.main-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+/* Tree View (pan/zoom container) */
+.tree-view {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.tree-view:active {
+  cursor: grabbing;
+}
+
+.tree-canvas {
+  display: inline-flex;
+  transform-origin: 0 0;
+  padding: 40px;
+  min-width: 100%;
+  min-height: 100%;
+  justify-content: center;
+}
+
+/* Tree node wrappers - vertical tree layout */
+.tree-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Connector lines */
+.tree-children {
+  display: flex;
+  gap: 0;
+  position: relative;
+  padding-top: 28px;
+}
+
+.tree-children::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 28px;
+  border-left: 2px solid #bbb;
+}
+
+.tree-children > .tree-node-wrapper {
+  position: relative;
+  padding: 0 14px;
+}
+
+/* Horizontal connector bar across siblings */
+.tree-children > .tree-node-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 0;
+  border-top: 2px solid #bbb;
+  left: 0;
+  right: 0;
+}
+
+.tree-children > .tree-node-wrapper:first-child::before {
+  left: 50%;
+}
+
+.tree-children > .tree-node-wrapper:last-child::before {
+  right: 50%;
+}
+
+.tree-children > .tree-node-wrapper:only-child::before {
+  display: none;
+}
+
+/* Vertical stub from horizontal bar down to node */
+.tree-children > .tree-node-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 14px;
+  border-left: 2px solid #bbb;
+}
+
+/* Vertical connector from node card down to children bar */
+.tree-node-wrapper > .tree-children::before {
+  top: 0;
+}
+
+.tree-node-wrapper > .tree-node {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.tree-node-wrapper > .tree-node::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  width: 0;
+  height: 14px;
+  border-left: 2px solid #bbb;
+}
+
+/* Hide bottom connector when no children or collapsed */
+.tree-node-wrapper:not(:has(> .tree-children)) > .tree-node::after {
+  display: none;
+}
+
+/* Node card */
+.tree-node {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: default;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  margin-bottom: 14px;
+}
+
+.tree-node:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Gender colors */
+.tree-node.gender-male {
+  border-color: #5dade2;
+  background: #eaf6fd;
+}
+
+.tree-node.gender-female {
+  border-color: #f1948a;
+  background: #fdf2f0;
+}
+
+.tree-node.gender-other {
+  border-color: #82e0aa;
+  background: #eefbf3;
+}
+
+/* Highlighted (search match) */
+.tree-node.highlighted {
+  box-shadow: 0 0 0 3px #f39c12, 0 4px 12px rgba(243, 156, 18, 0.4);
+  border-color: #f39c12;
+}
+
+.node-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.node-name:hover {
+  text-decoration: underline;
+}
+
+.node-years {
+  font-size: 0.78rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.node-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.node-btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.node-btn:hover {
+  background: #e0e0e0;
+}
+
+.node-btn-delete:hover {
+  background: #fdd;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Node form */
+.node-form h3 {
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+}
+
+.node-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.node-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.node-form input,
+.node-form select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.node-form input:focus,
+.node-form select:focus {
+  border-color: #6c63ff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* Confirm dialog */
+.confirm-dialog p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
