@@ -235,6 +235,17 @@ body {
   height: 100%;
 }
 
+.tree-view-scrollable {
+  overflow: auto;
+  cursor: default;
+  padding: 12px 10px 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tree-flow-frame {
+  min-width: 100%;
+}
+
 .tree-flow .react-flow__node-family {
   background: transparent;
   border: none;
@@ -261,10 +272,22 @@ body {
 .tree-flow .react-flow__edge.relationship-edge .react-flow__edge-path {
   stroke: #2a7f9e;
   stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 10 8;
+  animation: edgeFlow 1.05s linear infinite;
 }
 
 .tree-flow .react-flow__edge.relationship-edge .react-flow__arrowhead path {
   fill: #2a7f9e;
+}
+
+@keyframes edgeFlow {
+  from {
+    stroke-dashoffset: 18;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .flow-handle {
@@ -401,13 +424,13 @@ body {
   background: #fff;
   border-left: 4px solid var(--node-accent, #5dade2);
   border-radius: 999px;
-  padding: 18px 22px 16px;
-  min-width: 210px;
-  max-width: 260px;
-  min-height: 128px;
+  padding: 12px 14px 10px;
+  min-width: 156px;
+  max-width: 188px;
+  min-height: 98px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08), 0 14px 30px rgba(15, 23, 42, 0.12);
-  cursor: grab;
+  cursor: pointer;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   margin-bottom: 10px;
   position: relative;
@@ -468,9 +491,9 @@ body {
 
 .node-name {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.84rem;
   cursor: pointer;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .node-name:hover {
@@ -478,9 +501,9 @@ body {
 }
 
 .node-years {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--muted);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .node-actions {
@@ -501,14 +524,14 @@ body {
 }
 
 .node-btn {
-  height: 28px;
-  min-width: 28px;
-  padding: 0 8px;
+  height: 24px;
+  min-width: 24px;
+  padding: 0 6px;
   border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 12px;
   background: #fff;
   cursor: pointer;
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -528,13 +551,13 @@ body {
 }
 
 .node-toggle {
-  margin: 8px auto 0;
-  padding: 4px 10px;
+  margin: 5px auto 0;
+  padding: 3px 8px;
   border-radius: 999px;
   border: 1px solid rgba(42, 127, 158, 0.2);
   background: var(--accent-soft);
   color: var(--accent-strong);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -697,11 +720,11 @@ body {
 
 /* Node photo */
 .node-photo {
-  width: 54px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 8px;
+  margin: 0 auto 5px;
   border: 2px solid rgba(15, 23, 42, 0.08);
 }
 
@@ -1031,69 +1054,39 @@ body {
   }
 
   .tree-node {
-    min-width: 168px;
-    max-width: 188px;
-    min-height: 108px;
-    padding: 12px 14px 10px;
+    min-width: 142px;
+    max-width: 162px;
+    min-height: 88px;
+    padding: 10px 10px 8px;
     margin-bottom: 6px;
   }
 
   .node-photo {
-    width: 42px;
-    height: 42px;
-    margin-bottom: 6px;
-  }
-
-  .node-name {
-    font-size: 0.84rem;
-  }
-
-  .node-years {
-    font-size: 0.72rem;
+    width: 34px;
+    height: 34px;
     margin-bottom: 4px;
   }
 
-  .node-btn {
-    height: 24px;
-    min-width: 24px;
+  .node-name {
+    font-size: 0.76rem;
+  }
+
+  .node-years {
     font-size: 0.66rem;
-    padding: 0 6px;
+    margin-bottom: 2px;
+  }
+
+  .node-btn {
+    height: 21px;
+    min-width: 21px;
+    font-size: 0.58rem;
+    padding: 0 4px;
   }
 
   .node-toggle {
-    margin-top: 5px;
-    font-size: 0.68rem;
-    padding: 3px 8px;
-  }
-
-  .tree-mobile-controls {
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 6px;
-    z-index: 6;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    border-radius: 12px;
-    padding: 6px;
-    backdrop-filter: blur(4px);
-  }
-
-  .mobile-ctrl-btn {
-    height: 30px;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    border-radius: 8px;
-    background: #fff;
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: #1f2937;
-  }
-
-  .mobile-ctrl-btn:disabled {
-    opacity: 0.4;
+    margin-top: 4px;
+    font-size: 0.6rem;
+    padding: 2px 6px;
   }
 
   .tree-node:hover .node-actions {

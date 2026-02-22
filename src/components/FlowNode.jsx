@@ -37,7 +37,7 @@ export default function FlowNode({ data }) {
   return (
     <div
       className={`tree-node gender-${node.gender}${isHighlighted ? " highlighted" : ""}`}
-      onClick={() => onTraverseNode(node.id, hasChildren)}
+      onClick={() => onTraverseNode(node.id, hasChildren, collapsed)}
     >
       <Handle id="left" type="target" position={Position.Left} className="flow-handle flow-handle-left" />
 
