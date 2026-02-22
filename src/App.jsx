@@ -14,6 +14,9 @@ import {
   createNode,
 } from "./utils/treeUtils";
 
+// sample data is bundled and also placed in public directory for easy access/fetching
+import sampleTree from "../sample-family-tree.json";
+
 function useAnimatedModal(value, setValue) {
   const [isClosing, setIsClosing] = useState(false);
 
@@ -30,7 +33,8 @@ function useAnimatedModal(value, setValue) {
 }
 
 export default function App() {
-  const [tree, setTree] = useState(null);
+  // initialize with sample tree so app has content on load
+  const [tree, setTree] = useState(sampleTree);
   const [formState, setFormState] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [highlightIds, setHighlightIds] = useState(new Set());
