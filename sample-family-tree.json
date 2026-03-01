@@ -22,7 +22,15 @@
                   "id": "5",
                   "name": "काशीराम",
                   "gender": "male",
-                  "children": []
+                  "children": [],
+                  "spouse": {
+                    "id": "5-s",
+                    "name": "माया काशीराम",
+                    "gender": "female",
+                    "birthDate": null,
+                    "deathDate": null,
+                    "photoUrl": null
+                  }
                 },
                 {
                   "id": "6",
@@ -33,7 +41,15 @@
                       "id": "7",
                       "name": "मणिकरण आचार्य",
                       "gender": "male",
-                      "children": []
+                      "children": [],
+                      "spouse": {
+                        "id": "7-s",
+                        "name": "कविता आचार्य",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     },
                     {
                       "id": "8",
@@ -49,33 +65,81 @@
                               "id": "10",
                               "name": "विष्णु",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "10-s",
+                                "name": "नरेश विष्णु",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "11",
                               "name": "पार्वती चापागाईं",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "11-s",
+                                "name": "अरुण चापागाईं",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "12",
                               "name": "सावित्री",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "12-s",
+                                "name": "राम सावित्री",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "13",
                               "name": "देवी",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "13-s",
+                                "name": "श्याम देवी",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "14",
                               "name": "शंकर",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "14-s",
+                                "name": "अनिता शंकर",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "9-s",
+                            "name": "प्रकाश रेग्मी",
+                            "gender": "male",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "15",
@@ -86,21 +150,53 @@
                               "id": "16",
                               "name": "सन्देश शर्मा",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "16-s",
+                                "name": "सुष्मा शर्मा",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "17",
                               "name": "सागर शर्मा",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "17-s",
+                                "name": "माया शर्मा",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "18",
                               "name": "सोनिया शर्मा",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "18-s",
+                                "name": "गोपाल शर्मा",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "15-s",
+                            "name": "कल्पना शर्मा",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "19",
@@ -111,15 +207,39 @@
                               "id": "20",
                               "name": "नवीन",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "20-s",
+                                "name": "रेखा नवीन",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "21",
                               "name": "यमुना",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "21-s",
+                                "name": "प्रकाश यमुना",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "19-s",
+                            "name": "कविता आचार्य",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "22",
@@ -130,9 +250,25 @@
                               "id": "23",
                               "name": "अभिनव आचार्य",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "23-s",
+                                "name": "ममता आचार्य",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "22-s",
+                            "name": "अन्जु आचार्य",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "24",
@@ -143,9 +279,25 @@
                               "id": "25",
                               "name": "प्रतिमा रेग्मी",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "25-s",
+                                "name": "श्याम रेग्मी",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "24-s",
+                            "name": "राम रेग्मी",
+                            "gender": "male",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "26",
@@ -156,17 +308,49 @@
                               "id": "27",
                               "name": "अनुकृति आचार्य",
                               "gender": "female",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "27-s",
+                                "name": "सुरेश आचार्य",
+                                "gender": "male",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             },
                             {
                               "id": "28",
                               "name": "बिपाश्यक आचार्य",
                               "gender": "male",
-                              "children": []
+                              "children": [],
+                              "spouse": {
+                                "id": "28-s",
+                                "name": "सुष्मा आचार्य",
+                                "gender": "female",
+                                "birthDate": null,
+                                "deathDate": null,
+                                "photoUrl": null
+                              }
                             }
-                          ]
+                          ],
+                          "spouse": {
+                            "id": "26-s",
+                            "name": "अनिता आचार्य",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         }
-                      ]
+                      ],
+                      "spouse": {
+                        "id": "8-s",
+                        "name": "रेखा आचार्य",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     },
                     {
                       "id": "29",
@@ -177,11 +361,35 @@
                           "id": "30",
                           "name": "शिव",
                           "gender": "male",
-                          "children": []
+                          "children": [],
+                          "spouse": {
+                            "id": "30-s",
+                            "name": "सरस्वती शिव",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         }
-                      ]
+                      ],
+                      "spouse": {
+                        "id": "29-s",
+                        "name": "माया आचार्य",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     }
-                  ]
+                  ],
+                  "spouse": {
+                    "id": "6-s",
+                    "name": "सरस्वती तारापति",
+                    "gender": "female",
+                    "birthDate": null,
+                    "deathDate": null,
+                    "photoUrl": null
+                  }
                 },
                 {
                   "id": "31",
@@ -192,17 +400,49 @@
                       "id": "32",
                       "name": "छदानन्द आचार्य",
                       "gender": "male",
-                      "children": []
+                      "children": [],
+                      "spouse": {
+                        "id": "32-s",
+                        "name": "रेखा आचार्य",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     },
                     {
                       "id": "33",
                       "name": "गणेश",
                       "gender": "male",
-                      "children": []
+                      "children": [],
+                      "spouse": {
+                        "id": "33-s",
+                        "name": "सुनिता गणेश",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     }
-                  ]
+                  ],
+                  "spouse": {
+                    "id": "31-s",
+                    "name": "कविता मार्कण्ड",
+                    "gender": "female",
+                    "birthDate": null,
+                    "deathDate": null,
+                    "photoUrl": null
+                  }
                 }
-              ]
+              ],
+              "spouse": {
+                "id": "4-s",
+                "name": "सुष्मा आचार्य",
+                "gender": "female",
+                "birthDate": null,
+                "deathDate": null,
+                "photoUrl": null
+              }
             },
             {
               "id": "34",
@@ -218,7 +458,15 @@
                       "id": "36",
                       "name": "तुलसीराम",
                       "gender": "male",
-                      "children": []
+                      "children": [],
+                      "spouse": {
+                        "id": "36-s",
+                        "name": "सीता तुलसीराम",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     },
                     {
                       "id": "37",
@@ -229,23 +477,87 @@
                           "id": "38",
                           "name": "शिव आचार्य",
                           "gender": "male",
-                          "children": []
+                          "children": [],
+                          "spouse": {
+                            "id": "38-s",
+                            "name": "अनिता आचार्य",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         },
                         {
                           "id": "39",
                           "name": "किरण आचार्य",
                           "gender": "male",
-                          "children": []
+                          "children": [],
+                          "spouse": {
+                            "id": "39-s",
+                            "name": "कल्पना आचार्य",
+                            "gender": "female",
+                            "birthDate": null,
+                            "deathDate": null,
+                            "photoUrl": null
+                          }
                         }
-                      ]
+                      ],
+                      "spouse": {
+                        "id": "37-s",
+                        "name": "गीता आचार्य",
+                        "gender": "female",
+                        "birthDate": null,
+                        "deathDate": null,
+                        "photoUrl": null
+                      }
                     }
-                  ]
+                  ],
+                  "spouse": {
+                    "id": "35-s",
+                    "name": "ममता आचार्य",
+                    "gender": "female",
+                    "birthDate": null,
+                    "deathDate": null,
+                    "photoUrl": null
+                  }
                 }
-              ]
+              ],
+              "spouse": {
+                "id": "34-s",
+                "name": "अन्जु आचार्य",
+                "gender": "female",
+                "birthDate": null,
+                "deathDate": null,
+                "photoUrl": null
+              }
             }
-          ]
+          ],
+          "spouse": {
+            "id": "3-s",
+            "name": "कल्पना आचार्य",
+            "gender": "female",
+            "birthDate": null,
+            "deathDate": null,
+            "photoUrl": null
+          }
         }
-      ]
+      ],
+      "spouse": {
+        "id": "2-s",
+        "name": "अनिता आचार्य",
+        "gender": "female",
+        "birthDate": null,
+        "deathDate": null,
+        "photoUrl": null
+      }
     }
-  ]
+  ],
+  "spouse": {
+    "id": "1-s",
+    "name": "गीता आचार्य",
+    "gender": "female",
+    "birthDate": null,
+    "deathDate": null,
+    "photoUrl": null
+  }
 }

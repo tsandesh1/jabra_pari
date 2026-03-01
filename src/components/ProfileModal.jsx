@@ -26,6 +26,12 @@ function readableGender(gender) {
   return gender.charAt(0).toUpperCase() + gender.slice(1);
 }
 
+function formatSpouse(spouse) {
+  if (!spouse?.name) return "-";
+  const spouseGender = readableGender(spouse.gender);
+  return `${spouse.name} (${spouseGender})`;
+}
+
 export default function ProfileModal({ node, onEdit, onClose, isClosing }) {
   if (!node) return null;
 
@@ -62,6 +68,10 @@ export default function ProfileModal({ node, onEdit, onClose, isClosing }) {
           <div className="profile-row">
             <span className="profile-label">Marriage Date</span>
             <span className="profile-value">{formatDate(node.marriageDate)}</span>
+          </div>
+          <div className="profile-row">
+            <span className="profile-label">Spouse</span>
+            <span className="profile-value">{formatSpouse(node.spouse)}</span>
           </div>
           <div className="profile-row">
             <span className="profile-label">Permanent Address</span>

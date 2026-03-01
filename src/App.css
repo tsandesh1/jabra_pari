@@ -506,6 +506,12 @@ body {
   margin-bottom: 4px;
 }
 
+.node-spouse {
+  font-size: 0.67rem;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
 .node-actions {
   display: flex;
   gap: 6px;
@@ -722,16 +728,75 @@ body {
 .node-photo {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 5px;
   border: 2px solid rgba(15, 23, 42, 0.08);
+  border-radius: 50%;
+}
+
+.node-photo.node-photo-couple {
+  width: 46px;
+  height: 44px;
+  border: none;
+  border-radius: 0;
 }
 
 .node-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.node-photo-combined {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  clip-path: polygon(
+    50% 98%,
+    16% 74%,
+    3% 54%,
+    4% 34%,
+    18% 17%,
+    34% 15%,
+    49% 28%,
+    65% 15%,
+    81% 17%,
+    96% 34%,
+    97% 54%,
+    84% 74%
+  );
+  border-radius: 0;
+  background: #fff;
+}
+
+.node-photo-combined::after {
+  content: "";
+  position: absolute;
+  top: 8%;
+  bottom: 14%;
+  left: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateX(-50%);
+}
+
+.node-photo-half {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  border: none;
+}
+
+.node-photo-primary {
+  grid-column: 1;
+}
+
+.node-photo-secondary {
+  grid-column: 2;
 }
 
 /* Social links on node */
@@ -1009,6 +1074,11 @@ body {
 .node-tooltip-years {
   font-size: 0.75rem;
   color: #6b7280;
+}
+
+.node-tooltip-spouse {
+  font-size: 0.74rem;
+  color: #4b5563;
 }
 
 .node-tooltip-meta {

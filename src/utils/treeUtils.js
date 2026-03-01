@@ -2,7 +2,33 @@ export function generateId() {
   return crypto.randomUUID();
 }
 
-export function createNode({ name, birthDate, deathDate, marriageDate, gender, photoUrl, socialLinks, permanentAddress, currentAddress, education }) {
+function normalizeSpouse(spouse, fallbackId = null) {
+  if (!spouse || typeof spouse !== "object") return null;
+  const name = typeof spouse.name === "string" ? spouse.name.trim() : "";
+  if (!name) return null;
+  return {
+    id: spouse.id || fallbackId || generateId(),
+    name,
+    gender: spouse.gender || "other",
+    birthDate: spouse.birthDate || null,
+    deathDate: spouse.deathDate || null,
+    photoUrl: spouse.photoUrl || null,
+  };
+}
+
+export function createNode({
+  name,
+  birthDate,
+  deathDate,
+  marriageDate,
+  gender,
+  photoUrl,
+  socialLinks,
+  permanentAddress,
+  currentAddress,
+  education,
+  spouse,
+}) {
   return {
     id: generateId(),
     name,
@@ -15,6 +41,7 @@ export function createNode({ name, birthDate, deathDate, marriageDate, gender, p
     permanentAddress: permanentAddress || null,
     currentAddress: currentAddress || null,
     education: education || [],
+    spouse: normalizeSpouse(spouse),
     children: [],
   };
 }
@@ -55,7 +82,11 @@ export function updateNode(tree, nodeId, updates) {
   const newTree = cloneTree(tree);
   const node = findNode(newTree, nodeId);
   if (node) {
-    Object.assign(node, updates);
+    const nextUpdates = { ...updates };
+    if (Object.prototype.hasOwnProperty.call(nextUpdates, "spouse")) {
+      nextUpdates.spouse = normalizeSpouse(nextUpdates.spouse, node.spouse?.id);
+    }
+    Object.assign(node, nextUpdates);
   }
   return newTree;
 }
@@ -80,8 +111,11 @@ export function countDescendants(node) {
 export function searchByName(tree, query) {
   const results = [];
   const q = query.toLowerCase();
-  function walk(node) {
+function walk(node) {
     if (node.name.toLowerCase().includes(q)) {
+      results.push(node.id);
+    }
+    if (node.spouse?.name?.toLowerCase().includes(q)) {
       results.push(node.id);
     }
     for (const child of node.children) {

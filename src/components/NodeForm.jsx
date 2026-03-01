@@ -17,6 +17,8 @@ export default function NodeForm({ node, onSubmit, onCancel, title, isClosing })
   const [deathDate, setDeathDate] = useState(node?.deathDate || "");
   const [marriageDate, setMarriageDate] = useState(node?.marriageDate || "");
   const [gender, setGender] = useState(node?.gender || "other");
+  const [spouseName, setSpouseName] = useState(node?.spouse?.name || "");
+  const [spouseGender, setSpouseGender] = useState(node?.spouse?.gender || "other");
   const [photoUrl, setPhotoUrl] = useState(node?.photoUrl || null);
   const [socialLinks, setSocialLinks] = useState(node?.socialLinks || {});
   const [permanentAddress, setPermanentAddress] = useState(node?.permanentAddress || "");
@@ -33,6 +35,7 @@ export default function NodeForm({ node, onSubmit, onCancel, title, isClosing })
   const [showEducation, setShowEducation] = useState(
     () => node?.education?.length > 0
   );
+  const [showSpouse, setShowSpouse] = useState(() => !!node?.spouse?.name);
   const fileRef = useRef();
 
   function handlePhotoChange(e) {
@@ -88,6 +91,13 @@ export default function NodeForm({ node, onSubmit, onCancel, title, isClosing })
       permanentAddress: permanentAddress.trim() || null,
       currentAddress: currentAddress.trim() || null,
       education: cleanEducation,
+      spouse: spouseName.trim()
+        ? {
+            id: node?.spouse?.id || null,
+            name: spouseName.trim(),
+            gender: spouseGender,
+          }
+        : null,
     });
   }
 
@@ -172,6 +182,36 @@ export default function NodeForm({ node, onSubmit, onCancel, title, isClosing })
               <option value="other">Other</option>
             </select>
           </label>
+
+          <button
+            type="button"
+            className="btn btn-secondary section-toggle"
+            onClick={() => setShowSpouse(!showSpouse)}
+          >
+            {showSpouse ? "Hide spouse" : "Add spouse"}
+          </button>
+
+          {showSpouse && (
+            <div className="section-fields">
+              <label>
+                Spouse Name
+                <input
+                  type="text"
+                  value={spouseName}
+                  onChange={(e) => setSpouseName(e.target.value)}
+                  placeholder="Spouse full name"
+                />
+              </label>
+              <label>
+                Spouse Gender
+                <select value={spouseGender} onChange={(e) => setSpouseGender(e.target.value)}>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+            </div>
+          )}
 
           {/* Addresses section */}
           <button

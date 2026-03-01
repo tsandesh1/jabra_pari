@@ -24,6 +24,9 @@ export default function NodeTooltip({ node, position, visible }) {
         <img src={image} alt={node.name} />
         <div>
           <div className="node-tooltip-name">{node.name}</div>
+          {node.spouse?.name && (
+            <div className="node-tooltip-spouse">Spouse: {node.spouse.name}</div>
+          )}
           {years && <div className="node-tooltip-years">{years}</div>}
         </div>
       </div>

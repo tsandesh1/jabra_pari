@@ -14,6 +14,11 @@ export function exportTree(tree) {
 function validateNode(node) {
   if (!node || typeof node !== "object") return false;
   if (typeof node.id !== "string" || typeof node.name !== "string") return false;
+  if (node.spouse != null) {
+    if (typeof node.spouse !== "object") return false;
+    if (typeof node.spouse.name !== "string" || node.spouse.name.trim() === "") return false;
+    if (typeof node.spouse.gender !== "string") return false;
+  }
   if (!Array.isArray(node.children)) return false;
   return node.children.every(validateNode);
 }

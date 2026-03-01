@@ -33,6 +33,9 @@ export default function FlowNode({ data }) {
   const years = getYearDisplay(node);
   const hasSocial = node.socialLinks && Object.keys(node.socialLinks).length > 0;
   const nodeImage = getNodeImage(node);
+  const spouse = node.spouse?.name?.trim() ? node.spouse : null;
+  const spouseImage = spouse ? getNodeImage(spouse) : null;
+  const coupleName = spouse ? `${node.name} / ${spouse.name}` : node.name;
 
   return (
     <div
@@ -41,12 +44,26 @@ export default function FlowNode({ data }) {
     >
       <Handle id="left" type="target" position={Position.Left} className="flow-handle flow-handle-left" />
 
-      <div className="node-photo nodrag" onClick={(e) => e.stopPropagation()}>
-        <img src={nodeImage} alt={node.name} />
+      <div
+        className={`node-photo nodrag${spouse ? " node-photo-couple" : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {spouse ? (
+          <div className="node-photo-combined">
+            <img src={nodeImage} alt={node.name} className="node-photo-half node-photo-primary" />
+            <img
+              src={spouseImage}
+              alt={spouse.name}
+              className="node-photo-half node-photo-secondary"
+            />
+          </div>
+        ) : (
+          <img src={nodeImage} alt={node.name} />
+        )}
       </div>
 
       <div className="node-name nodrag">
-        {node.name}
+        {coupleName}
       </div>
       {years && <div className="node-years">{years}</div>}
 
