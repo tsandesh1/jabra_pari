@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState, useCallback } from "react";
+import { useMemo, useEffect, useState, useCallback, useRef } from "react";
 import ReactFlow, {
   MarkerType,
   Position,
@@ -159,27 +159,12 @@ function buildFlow(tree, collapsedById, handlers, highlightIds, layout) {
   return { nodes, edges };
 }
 
-function getCanvasSize(nodes, layout) {
-  if (!nodes.length) return { width: 900, height: 600 };
-
-  let maxX = 0;
-  let maxY = 0;
-  for (const n of nodes) {
-    maxX = Math.max(maxX, n.position.x);
-    maxY = Math.max(maxY, n.position.y);
-  }
-
-  return {
-    width: Math.max(900, maxX + layout.nodeWidth + layout.paddingX),
-    height: Math.max(620, maxY + layout.nodeHeight + layout.paddingY),
-  };
-}
-
 function TreeFlow({ tree, highlightIds, onAddChild, onEdit, onDelete, onViewProfile }) {
   const [reactFlow, setReactFlow] = useState(null);
   const [selectedNodeId, setSelectedNodeId] = useState(tree.id);
   const [collapsedById, setCollapsedById] = useState(() => buildInitialCollapsedMap(tree));
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const initialFitDoneRef = useRef(false);
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -315,6 +300,20 @@ function TreeFlow({ tree, highlightIds, onAddChild, onEdit, onDelete, onViewProf
   useEffect(() => setEdges(flow.edges), [flow.edges, setEdges]);
 
   useEffect(() => {
+    if (!reactFlow || initialFitDoneRef.current) return;
+    const raf = window.requestAnimationFrame(() => {
+      reactFlow.fitView({
+        nodes: [{ id: tree.id }],
+        duration: 260,
+        padding: isMobile ? 0.34 : 0.18,
+        maxZoom: isMobile ? 0.95 : 1.12,
+      });
+      initialFitDoneRef.current = true;
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [isMobile, reactFlow, tree.id]);
+
+  useEffect(() => {
     if (!reactFlow || !selectedNodeId) return;
     const hasChildren = (childrenById.get(selectedNodeId) || []).length > 0;
     const isExpanded = hasChildren && !collapsedById[selectedNodeId];
@@ -354,8 +353,6 @@ function TreeFlow({ tree, highlightIds, onAddChild, onEdit, onDelete, onViewProf
     return () => window.cancelAnimationFrame(raf);
   }, [highlightIds, parentById]);
 
-  const canvasSize = useMemo(() => getCanvasSize(nodes, layout), [nodes, layout]);
-
   const handleNodeDragStop = useCallback((_, node) => {
     setNodes((prev) =>
       prev.map((n) => (n.id === node.id ? { ...n, position: node.position } : n))
@@ -363,35 +360,33 @@ function TreeFlow({ tree, highlightIds, onAddChild, onEdit, onDelete, onViewProf
   }, [setNodes]);
 
   return (
-    <div className="tree-view tree-view-scrollable">
-      <div
-        className="tree-flow-frame"
-        style={{ width: `${canvasSize.width}px`, height: `${canvasSize.height}px` }}
-      >
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onNodeDragStop={handleNodeDragStop}
-          onPaneClick={() => setSelectedNodeId(null)}
-          onInit={setReactFlow}
-          nodeTypes={nodeTypes}
-          defaultViewport={{ x: 0, y: 0, zoom: isMobile ? 0.72 : 0.86 }}
-          minZoom={0.35}
-          maxZoom={1.4}
-          proOptions={{ hideAttribution: true }}
-          nodesConnectable={false}
-          nodesDraggable
-          elementsSelectable={false}
-          panOnScroll
-          panOnDrag
-          zoomOnScroll={false}
-          zoomOnPinch
-          zoomOnDoubleClick={false}
-          className="tree-flow"
-        />
-      </div>
+    <div className="tree-view">
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onNodeDragStop={handleNodeDragStop}
+        onPaneClick={() => setSelectedNodeId(null)}
+        onInit={(instance) => {
+          setReactFlow(instance);
+          initialFitDoneRef.current = false;
+        }}
+        nodeTypes={nodeTypes}
+        defaultViewport={{ x: 0, y: 0, zoom: isMobile ? 0.72 : 0.86 }}
+        minZoom={0.35}
+        maxZoom={1.4}
+        proOptions={{ hideAttribution: true }}
+        nodesConnectable={false}
+        nodesDraggable
+        elementsSelectable={false}
+        panOnScroll
+        panOnDrag
+        zoomOnScroll={false}
+        zoomOnPinch
+        zoomOnDoubleClick={false}
+        className="tree-flow"
+      />
     </div>
   );
 }
